@@ -9,7 +9,7 @@ import type { Page } from "playwright";
 import { env } from "../env";
 
 const chatApi = new ChatOpenAI({
-  temperature: 0,
+  temperature: 0.1,
   openAIApiKey: env.openaiKey,
   modelName: "gpt-3.5-turbo-0125", // "gpt-4-0125-preview",
 });

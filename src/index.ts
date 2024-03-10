@@ -16,11 +16,10 @@ CREDENTIALS:
 
 const agent = getGPT(page, context);
 
-const instructions = `
- Go to mentimeter.com
- Accept cookies
- Click the login button
- Enter CREDENTIALS into the form
+const instructions = ` Go to mentimeter.com
+ Accept all cookies cookies
+ Click the button for navigating to the login page
+ Enter provided CREDENTIALS into the form ${context.replaceAll("\n", " ")}
  Click the login button using this EXACT locator text 'Log in'
 `;
 

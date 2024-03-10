@@ -2,10 +2,8 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { ChatOpenAI } from "@langchain/openai";
 import type { Page } from "playwright";
 import { expect } from "playwright/test";
-import { parseSite } from "../utils/parse-html";
 import { preprocessJsonInput } from "../utils";
-import { nanoid } from "nanoid";
-import { env } from "../../env";
+import { parseSite } from "../utils/parse-html";
 
 const AsyncFunction = async function () {}.constructor;
 
@@ -50,20 +48,23 @@ ${await parseSite(page)}
 \`\`\`
 
 Key Points:
-- Include a script for accepting cookies
 - Start directly with Playwright actions as described in the user task, without adding extraneous steps or assertions.
-- Include assertions like 'expect' statements only when they are specifically requested in the user task.
+- Include assertions like 'expect' statements or wait functions such as 'waitForLoadState' only when they are specifically requested in the user task.
 - Minimal, relevant comments should be used to clarify complex actions or essential aspects of the test's purpose.
 - Apply 'frameLocator' for content in nested iframes, as needed based on the task requirements.
 
 User Task: [Insert the specific user task here, including any detailed instructions related to the execution, waiting for specific conditions, or explicit requests for assertions and waits.]
+
+Important code guidelines
+- Always use write EXACT locators when locating html elements to interact with.
+- DO NOT use selectors such as button:has-text, div:has-text, this is VERY IMPORTANT.
 
 Expected Code Format:
 \`\`\`
 // [Insert Playwright code based on the task description. Begin with necessary actions directly, and include 'waitForLoadState', assertions, or 'expect' statements only if explicitly requested in the task. Comments should be concise and pertinent, especially for complex actions or decisions.]
 \`\`\`
 
-The objective is to create Playwright code that is efficient, precise, and perfectly aligned with the task's requirements, integrating seamlessly into the larger test file. All actions and comments should be relevant and necessary, catering to a senior-level professional's understanding of the testing scenario.`;
+The objective is to create Playwright code that is efficient, precise, and perfectly aligned with the task's requirements. All actions and comments should be relevant and necessary, catering to a senior-level professional's understanding of the testing scenario.`;
 
   return await queryGPT(chatApi, [
     new SystemMessage(systemPrompt),
