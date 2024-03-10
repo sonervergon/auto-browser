@@ -14,14 +14,14 @@ const chatApi = new ChatOpenAI({
   modelName: "gpt-3.5-turbo-0125", // "gpt-4-0125-preview",
 });
 
-export const getGPT = (page: Page) => {
+export const getGPT = (page: Page, context: string = "") => {
   const tools = [
     new DynamicTool({
       name: "interact with the page",
       description:
         "perform an action on the current page. Returns success after the interaction is successful or an error message if the interaction failed. the task should be written as a directive what the browser should do.",
       func: async (task) => {
-        await interactWithPage(chatApi, page, task);
+        await interactWithPage(chatApi, page, task, context);
         await takeScreenshot(page);
         return "Success";
       },

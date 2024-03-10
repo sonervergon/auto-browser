@@ -1,15 +1,13 @@
-# auto-browser
+_Experimentation repo for performing web based tasks using AutoGPT and Playwright._
 
-To install dependencies:
+## Introduction
 
-```bash
-bun install
-```
+Use the power of LLMs to run monotonus tasks in the browser and take screenshots using AutoGPT and Playwright.
 
-To run:
+### Usage
 
-```bash
-bun run index.ts
-```
+1. Give the agent a goal of what it should achieve together with a context
+2. Run the script
+3. Wait
 
-This project was created using `bun init` in bun v1.0.25. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+The intended outcome is a group of screenshots from the flow the agent just ran using Playwright.

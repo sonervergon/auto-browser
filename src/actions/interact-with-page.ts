@@ -12,9 +12,10 @@ const AsyncFunction = async function () {}.constructor;
 export async function interactWithPage(
   chatApi: ChatOpenAI,
   page: Page,
-  task: string
+  task: string,
+  context: string
 ) {
-  const code = await getPlayWrightCode(page, chatApi, task);
+  const code = await getPlayWrightCode(page, chatApi, task, context);
   await execPlayWrightCode(page, code as string);
   return Promise.resolve();
 }
@@ -30,14 +31,13 @@ async function queryGPT(chatApi: ChatOpenAI, messages: any[]) {
 async function getPlayWrightCode(
   page: Page,
   chatApi: ChatOpenAI,
-  task: string
+  task: string,
+  context: string
 ) {
   const systemPrompt = `
 You are a Senior SDET tasked with writing Playwright code for testing purposes. Your role involves implementing specific task-based code segments within a larger test file, following the instructions provided closely. Assume that common imports like 'test' and 'expect' from '@playwright/test' are already at the top of the file.
 
-CREDENTIALS: 
-     - email: "${env.mentiEmail}"
-     - password: "${env.mentiPassword}"
+${context}
 
 Context:
 - Your computer is a Mac. Cmd is the meta key, META.
